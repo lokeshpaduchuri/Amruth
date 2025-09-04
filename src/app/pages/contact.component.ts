@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SeoService } from '../seo.service';
@@ -19,6 +19,10 @@ import { SeoService } from '../seo.service';
   `,
 })
 export class ContactComponent {
+  private fb = inject(FormBuilder);
+  private http = inject(HttpClient);
+  private seo = inject(SeoService);
+
   form = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -27,7 +31,7 @@ export class ContactComponent {
   });
   result = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private seo: SeoService) {
+  constructor() {
     this.seo.update('Contact', 'Contact Amruth Royal Cuisine');
   }
 
