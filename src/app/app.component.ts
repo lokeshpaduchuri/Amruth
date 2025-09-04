@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
-import { HeroComponent } from './components/hero.component';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
-  standalone: true,
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  imports: [RouterOutlet, RouterLink, HeroComponent]
+  standalone: true,
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  template: `
+    <h1>Angular 18 Standalone App</h1>
+    <nav>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a routerLink="/test" routerLinkActive="active">Test</a>
+    </nav>
+    <router-outlet></router-outlet>
+  `,
 })
-export class AppComponent {
-  currentYear = new Date().getFullYear();
-}
+export class AppComponent {}
