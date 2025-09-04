@@ -1,9 +1,0 @@
-[[redirects]]
-  from = "/sitemap.xml"
-  to = "/.netlify/functions/sitemap"
-  status = 200
-
-[[redirects]]
-  from = "/robots.txt"
-  to = "/.netlify/functions/robots"
-  status = 200

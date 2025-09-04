@@ -1,5 +1,0 @@
-<article *ngIf="post">
-  <h1 class="text-3xl font-bold">{{ post.title }}</h1>
-  <img *ngIf="post.coverImage" [src]="post.coverImage" [alt]="post.title" class="my-4" />
-  <div [innerHTML]="post.body"></div>
-</article>
