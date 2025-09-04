@@ -1,0 +1,7 @@
+<h2 class="text-2xl font-bold mb-4">FAQs</h2>
+<div *ngFor="let f of faqs" class="mb-4">
+  <h3 class="font-semibold">{{ f.question }}</h3>
+  <p>{{ f.answer }}</p>
+</div>
+<script type="application/ld+json" [textContent]="jsonLd"></script>
+

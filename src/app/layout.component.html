@@ -1,0 +1,19 @@
+<div class="min-h-screen flex flex-col">
+  <header class="p-4 bg-royalred text-cream flex justify-between dark:bg-neutral-900 dark:text-cream">
+    <a routerLink="/" class="font-bold">{{ site.name }}</a>
+    <nav class="space-x-4">
+      <a routerLink="/about" class="hover:underline">About</a>
+      <a routerLink="/menu" class="hover:underline">Menu</a>
+      <a routerLink="/blog" class="hover:underline">Blog</a>
+      <a routerLink="/contact" class="hover:underline">Contact</a>
+    </nav>
+    <button (click)="toggle()" class="ml-4 px-2 py-1 border rounded border-cream/40 hover:bg-cream/10">
+      {{ dark ? 'Light' : 'Dark' }}
+    </button>
+  </header>
+  <main class="p-4 flex-1"><router-outlet></router-outlet></main>
+  <footer class="p-4 text-center bg-deepmaroon text-cream dark:bg-neutral-950 dark:text-cream mt-auto">
+    © {{ year }} {{ site.name }}
+  </footer>
+</div>
+

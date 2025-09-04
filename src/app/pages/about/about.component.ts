@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { SeoService } from '../seo.service';
+import { SeoService } from '../../seo.service';
 
 @Component({
   standalone: true,
-  template: `
-    <h2 class="text-2xl font-bold mb-4">About Us</h2>
-    <p>Amruth Royal Cuisine brings authentic Indian dishes to Wixom, Michigan.</p>
-  `,
+  templateUrl: './about.component.html',
 })
 export class AboutComponent {
   constructor(private seo: SeoService) {

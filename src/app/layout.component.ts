@@ -6,20 +6,7 @@ import { SITE } from '../site.config';
   selector: 'app-layout',
   standalone: true,
   imports: [RouterOutlet, RouterLink],
-  template: `
-    <header class="p-4 bg-royalred text-cream flex justify-between">
-      <a routerLink="/" class="font-bold">{{site.name}}</a>
-      <nav class="space-x-4">
-        <a routerLink="/about">About</a>
-        <a routerLink="/menu">Menu</a>
-        <a routerLink="/blog">Blog</a>
-        <a routerLink="/contact">Contact</a>
-      </nav>
-      <button (click)="toggle()" class="ml-4">{{dark?'Light':'Dark'}}</button>
-    </header>
-    <main class="p-4"><router-outlet></router-outlet></main>
-    <footer class="p-4 text-center bg-deepmaroon text-cream">© {{year}} {{site.name}}</footer>
-  `,
+  templateUrl: './layout.component.html',
 })
 export class LayoutComponent {
   site = SITE;
@@ -27,6 +14,12 @@ export class LayoutComponent {
   dark = false;
 
   constructor() {
+    // Initialize theme from localStorage or system preference
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    this.dark = saved ? saved === 'dark' : prefersDark;
+    document.documentElement.classList.toggle('dark', this.dark);
+
     if (SITE.ga4) {
       const s = document.createElement('script');
       s.src = `https://www.googletagmanager.com/gtag/js?id=${SITE.ga4}`;
@@ -40,6 +33,7 @@ export class LayoutComponent {
 
   toggle() {
     this.dark = !this.dark;
-    document.body.classList.toggle('dark', this.dark);
+    document.documentElement.classList.toggle('dark', this.dark);
+    localStorage.setItem('theme', this.dark ? 'dark' : 'light');
   }
 }

@@ -1,20 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
-import { SeoService } from '../seo.service';
-import { client } from '../sanity/client';
-import groq from 'groq';
-import { Post, postSchema } from '../sanity/schemas';
+import { SeoService } from '../../seo.service';
+import { getClient } from '../../sanity/client';
+import { Post, postSchema } from '../../sanity/schemas';
 
 @Component({
   standalone: true,
   imports: [NgIf],
-  template: `
-    <article *ngIf="post">
-      <h1 class="text-3xl font-bold mb-4">{{post.title}}</h1>
-      <div [innerHTML]="post.body"></div>
-    </article>
-  `,
+  templateUrl: './post.component.html',
 })
 export class PostComponent implements OnInit {
   post?: Post;
@@ -23,8 +17,10 @@ export class PostComponent implements OnInit {
 
   async ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
-    const query = groq`*[_type=="post" && slug.current==$slug][0]{_id,title,slug,body}`;
-    const data = await client.fetch(query, { slug });
+    const query = `*[_type=="post" && slug.current==$slug][0]{_id,title,slug,body}`;
+    const c = getClient();
+    if (!c) return;
+    const data = await c.fetch(query, { slug });
     this.post = postSchema.parse(data);
     this.seo.update(this.post.title, this.post.title);
   }
