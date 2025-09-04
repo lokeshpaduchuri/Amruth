@@ -1,0 +1,17 @@
+<form (ngSubmit)="submit()" [formGroup]="form" class="space-y-4 max-w-md">
+  <label class="block">
+    <span>Name</span>
+    <input type="text" formControlName="name" required class="input" />
+  </label>
+  <label class="block">
+    <span>Email</span>
+    <input type="email" formControlName="email" required class="input" />
+  </label>
+  <label class="block">
+    <span>Message</span>
+    <textarea formControlName="message" required class="input"></textarea>
+  </label>
+  <input type="text" formControlName="website" class="hidden" tabindex="-1" autocomplete="off" />
+  <button type="submit" class="btn" [disabled]="form.invalid">Send</button>
+  <p *ngIf="sent" role="status" class="text-teal mt-2">Thanks! We'll be in touch.</p>
+</form>
