@@ -1,0 +1,5 @@
+<img *ngIf="item.image" [src]="item.image" [alt]="item.title" class="w-full h-40 object-cover rounded" />
+<h3 class="mt-4 text-lg font-bold">{{ item.title }}</h3>
+<p class="text-sm text-gray-700">{{ item.description }}</p>
+<p class="mt-2 text-royal font-semibold">${{ item.price | number:'1.2-2' }}</p>
+<span class="sr-only">Spice level {{ item.spice }}, {{ item.veg }}</span>
