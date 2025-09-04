@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { SeoService } from '../shared/seo.service';
@@ -9,7 +9,7 @@ import { SeoService } from '../shared/seo.service';
   templateUrl: './contact.component.html',
   imports: [CommonModule, ReactiveFormsModule]
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
   private fb = new FormBuilder();
   sent = false;
 
@@ -20,12 +20,15 @@ export class ContactComponent {
     website: ['']
   });
 
-  constructor(private seo: SeoService) {
-    this.seo.update({
-      title: 'Contact Amruth Royal Cuisine',
-      description: 'Get in touch with our team for reservations and inquiries.',
-      url: 'https://amruth.example/contact'
-    });
+  ngOnInit() {
+    if (typeof window !== 'undefined') {
+      const seo = inject(SeoService);
+      seo.update({
+        title: 'Contact Amruth Royal Cuisine',
+        description: 'Get in touch with our team for reservations and inquiries.',
+        url: 'https://amruth.example/contact'
+      });
+    }
   }
 
   async submit() {

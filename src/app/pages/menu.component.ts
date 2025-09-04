@@ -12,16 +12,18 @@ import { MenuCardComponent } from '../components/menu-card.component';
 })
 export class MenuComponent implements OnInit {
   private sanity = inject(SanityService);
-  private seo = inject(SeoService);
 
   categories: { title: string; items: MenuItem[] }[] = [];
 
   async ngOnInit() {
     this.categories = await this.sanity.fetchMenu();
-    this.seo.update({
-      title: 'Menu – Amruth Royal Cuisine',
-      description: 'Explore our menu of starters, curries, biryani and more.',
-      url: 'https://amruth.example/menu'
-    });
+    if (typeof window !== 'undefined') {
+      const seo = inject(SeoService);
+      seo.update({
+        title: 'Menu – Amruth Royal Cuisine',
+        description: 'Explore our menu of starters, curries, biryani and more.',
+        url: 'https://amruth.example/menu'
+      });
+    }
   }
 }

@@ -11,14 +11,16 @@ import { SeoService } from '../shared/seo.service';
 })
 export class TestimonialsComponent implements OnInit {
   private sanity = inject(SanityService);
-  private seo = inject(SeoService);
   testimonials = this.sanity.fetchTestimonials();
 
   ngOnInit() {
-    this.seo.update({
-      title: 'Testimonials – Amruth Royal Cuisine',
-      description: 'Hear from our guests.',
-      url: 'https://amruth.example/testimonials'
-    });
+    if (typeof window !== 'undefined') {
+      const seo = inject(SeoService);
+      seo.update({
+        title: 'Testimonials – Amruth Royal Cuisine',
+        description: 'Hear from our guests.',
+        url: 'https://amruth.example/testimonials'
+      });
+    }
   }
 }

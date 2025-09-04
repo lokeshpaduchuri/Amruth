@@ -13,7 +13,6 @@ import { CtaComponent } from '../components/cta.component';
   imports: [CommonModule, HeroComponent, MenuCardComponent, CtaComponent]
 })
 export class HomeComponent implements OnInit {
-  private seo = inject(SeoService);
   private sanity = inject(SanityService);
 
   featured: MenuItem[] = [];
@@ -21,10 +20,13 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     this.featured = await this.sanity.fetchFeaturedMenu();
-    this.seo.update({
-      title: 'Amruth Royal Cuisine – Authentic Indian Food in Wixom, MI',
-      description: 'Savor royal Indian flavors. Dine-in, takeout, catering.',
-      url: 'https://amruth.example/'
-    });
+    if (typeof window !== 'undefined') {
+      const seo = inject(SeoService);
+      seo.update({
+        title: 'Amruth Royal Cuisine – Authentic Indian Food in Wixom, MI',
+        description: 'Savor royal Indian flavors. Dine-in, takeout, catering.',
+        url: 'https://amruth.example/'
+      });
+    }
   }
 }

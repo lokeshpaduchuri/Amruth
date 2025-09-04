@@ -11,13 +11,15 @@ import { SeoService } from '../shared/seo.service';
 })
 export class FaqsComponent implements OnInit {
   items = faqs;
-  private seo = inject(SeoService);
 
   ngOnInit() {
-    this.seo.update({
-      title: 'FAQs – Amruth Royal Cuisine',
-      description: 'Frequently asked questions about our restaurant.',
-      url: 'https://amruth.example/faqs'
-    });
+    if (typeof window !== 'undefined') {
+      const seo = inject(SeoService);
+      seo.update({
+        title: 'FAQs – Amruth Royal Cuisine',
+        description: 'Frequently asked questions about our restaurant.',
+        url: 'https://amruth.example/faqs'
+      });
+    }
   }
 }

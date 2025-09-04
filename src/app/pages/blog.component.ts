@@ -12,14 +12,16 @@ import { RouterLink } from '@angular/router';
 })
 export class BlogComponent implements OnInit {
   private sanity = inject(SanityService);
-  private seo = inject(SeoService);
   posts = this.sanity.fetchPosts();
 
   ngOnInit() {
-    this.seo.update({
-      title: 'Blog – Amruth Royal Cuisine',
-      description: 'News and recipes from our kitchen.',
-      url: 'https://amruth.example/blog'
-    });
+    if (typeof window !== 'undefined') {
+      const seo = inject(SeoService);
+      seo.update({
+        title: 'Blog – Amruth Royal Cuisine',
+        description: 'News and recipes from our kitchen.',
+        url: 'https://amruth.example/blog'
+      });
+    }
   }
 }

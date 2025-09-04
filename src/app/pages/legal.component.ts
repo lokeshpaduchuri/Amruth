@@ -1,7 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Injector,PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { SeoService } from '../shared/seo.service';
 
 @Component({
@@ -12,11 +10,10 @@ import { SeoService } from '../shared/seo.service';
 })
 export class LegalComponent implements OnInit {
   sections: { title: string; content: string }[] = [];
-  
+
   async ngOnInit() {
-  const seo = inject(SeoService);
-  const platformId = inject(Injector).get(PLATFORM_ID)
-    if (isPlatformBrowser(platformId)) {
+    if (isPlatformBrowser(inject(PLATFORM_ID))) {
+      const seo = inject(SeoService);
       const [privacy, tos] = await Promise.all([
         fetch('/data/legal/privacy.md').then(r => r.text()),
         fetch('/data/legal/tos.md').then(r => r.text())
@@ -25,11 +22,11 @@ export class LegalComponent implements OnInit {
         { title: 'Privacy Policy', content: privacy },
         { title: 'Terms of Service', content: tos }
       ];
+      seo.update({
+        title: 'Legal – Amruth Royal Cuisine',
+        description: 'Our privacy policy and terms of service.',
+        url: 'https://amruth.example/legal'
+      });
     }
-    seo.update({
-      title: 'Legal – Amruth Royal Cuisine',
-      description: 'Our privacy policy and terms of service.',
-      url: 'https://amruth.example/legal'
-    });
   }
 }

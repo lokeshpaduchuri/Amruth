@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SeoService } from '../shared/seo.service';
-import { inject, OnInit } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -10,16 +9,14 @@ import { inject, OnInit } from '@angular/core';
   imports: [CommonModule]
 })
 export class AboutComponent implements OnInit {
-  
-
-  seo: any;
-
   ngOnInit() {
-  this.seo = inject(SeoService);
-    this.seo.update({
-      title: 'About Amruth Royal Cuisine',
-      description: 'Our story and passion for authentic Indian cuisine.',
-      url: 'https://amruth.example/about'
-    });
+    if (typeof window !== 'undefined') {
+      const seo = inject(SeoService);
+      seo.update({
+        title: 'About Amruth Royal Cuisine',
+        description: 'Our story and passion for authentic Indian cuisine.',
+        url: 'https://amruth.example/about'
+      });
+    }
   }
 }
