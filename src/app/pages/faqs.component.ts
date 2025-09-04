@@ -1,11 +1,13 @@
 import { Component, OnInit, inject } from '@angular/core';
-import faqs from '../../../data/faqs.json';
+import { CommonModule } from '@angular/common';
+import faqs from '../../data/faqs.json';
 import { SeoService } from '../shared/seo.service';
 
 @Component({
   standalone: true,
   selector: 'app-faqs',
-  templateUrl: './faqs.component.html'
+  templateUrl: './faqs.component.html',
+  imports: [CommonModule]
 })
 export class FaqsComponent implements OnInit {
   items = faqs;

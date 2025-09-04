@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { SeoService } from '../shared/seo.service';
 import { SanityService, MenuItem } from '../shared/sanity.service';
 import { HeroComponent } from '../components/hero.component';
@@ -9,7 +10,7 @@ import { CtaComponent } from '../components/cta.component';
   standalone: true,
   selector: 'app-home',
   templateUrl: './home.component.html',
-  imports: [HeroComponent, MenuCardComponent, CtaComponent]
+  imports: [CommonModule, HeroComponent, MenuCardComponent, CtaComponent]
 })
 export class HomeComponent implements OnInit {
   private seo = inject(SeoService);

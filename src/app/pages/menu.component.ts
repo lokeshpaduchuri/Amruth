@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { SanityService, MenuItem } from '../shared/sanity.service';
 import { SeoService } from '../shared/seo.service';
 import { MenuCardComponent } from '../components/menu-card.component';
@@ -7,7 +8,7 @@ import { MenuCardComponent } from '../components/menu-card.component';
   standalone: true,
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  imports: [MenuCardComponent]
+  imports: [CommonModule, MenuCardComponent]
 })
 export class MenuComponent implements OnInit {
   private sanity = inject(SanityService);

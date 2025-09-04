@@ -1,11 +1,13 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { SanityService } from '../shared/sanity.service';
 import { SeoService } from '../shared/seo.service';
 
 @Component({
   standalone: true,
   selector: 'app-testimonials',
-  templateUrl: './testimonials.component.html'
+  templateUrl: './testimonials.component.html',
+  imports: [CommonModule]
 })
 export class TestimonialsComponent implements OnInit {
   private sanity = inject(SanityService);

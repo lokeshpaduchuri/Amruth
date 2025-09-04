@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { HeroComponent } from './components/hero.component';
 
 @Component({
   standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [RouterOutlet, HeroComponent]
+  imports: [RouterOutlet, RouterLink, HeroComponent]
 })
-export class AppComponent {}
+export class AppComponent {
+  currentYear = new Date().getFullYear();
+}

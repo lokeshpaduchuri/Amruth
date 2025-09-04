@@ -1,10 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { SeoService } from '../shared/seo.service';
 
 @Component({
   standalone: true,
   selector: 'app-locations',
-  templateUrl: './locations.component.html'
+  templateUrl: './locations.component.html',
+  imports: [CommonModule]
 })
 export class LocationsComponent implements OnInit {
   private seo = inject(SeoService);

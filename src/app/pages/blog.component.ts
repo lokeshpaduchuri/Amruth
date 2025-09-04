@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { SanityService } from '../shared/sanity.service';
+import { CommonModule } from '@angular/common';
 import { SeoService } from '../shared/seo.service';
 import { RouterLink } from '@angular/router';
 
@@ -7,7 +8,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   selector: 'app-blog',
   templateUrl: './blog.component.html',
-  imports: [RouterLink]
+  imports: [CommonModule, RouterLink]
 })
 export class BlogComponent implements OnInit {
   private sanity = inject(SanityService);

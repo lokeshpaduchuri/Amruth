@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 export interface MenuCardData {
   title: string;
@@ -13,6 +14,7 @@ export interface MenuCardData {
   standalone: true,
   selector: 'app-menu-card',
   templateUrl: './menu-card.component.html',
+  imports: [CommonModule],
   host: { class: 'border rounded-md p-4 bg-white shadow-sm' }
 })
 export class MenuCardComponent {

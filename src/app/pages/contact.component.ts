@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { SeoService } from '../shared/seo.service';
 
@@ -6,7 +7,7 @@ import { SeoService } from '../shared/seo.service';
   standalone: true,
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  imports: [ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule]
 })
 export class ContactComponent {
   private fb = new FormBuilder();

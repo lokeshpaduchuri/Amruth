@@ -15,7 +15,7 @@
 <section aria-labelledby="testimonials" class="mt-16">
   <h2 id="testimonials" class="text-2xl font-semibold">Guests Say</h2>
   <div class="space-y-8">
-    <blockquote *ngFor="let t of testimonials" class="border-l-4 pl-4">
+    <blockquote *ngFor="let t of testimonials | async" class="border-l-4 pl-4">
       <p>{{ t.quote }}</p>
       <footer class="text-sm text-gray-600">— {{ t.author }}</footer>
     </blockquote>

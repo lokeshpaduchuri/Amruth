@@ -1,24 +1,14 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home.component';
-import { AboutComponent } from './pages/about.component';
-import { MenuComponent } from './pages/menu.component';
-import { ContactComponent } from './pages/contact.component';
-import { FaqsComponent } from './pages/faqs.component';
-import { TestimonialsComponent } from './pages/testimonials.component';
-import { LegalComponent } from './pages/legal.component';
-import { LocationsComponent } from './pages/locations.component';
-import { BlogComponent } from './pages/blog.component';
-import { PostComponent } from './pages/post.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'menu', component: MenuComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'faqs', component: FaqsComponent },
-  { path: 'testimonials', component: TestimonialsComponent },
-  { path: 'legal', component: LegalComponent },
-  { path: 'locations', component: LocationsComponent },
-  { path: 'blog', component: BlogComponent },
-  { path: 'blog/:slug', component: PostComponent }
+  { path: '', loadComponent: () => import('./pages/home.component').then(m => m.HomeComponent) },
+  { path: 'about', loadComponent: () => import('./pages/about.component').then(m => m.AboutComponent) },
+  { path: 'menu', loadComponent: () => import('./pages/menu.component').then(m => m.MenuComponent) },
+  { path: 'contact', loadComponent: () => import('./pages/contact.component').then(m => m.ContactComponent) },
+  { path: 'faqs', loadComponent: () => import('./pages/faqs.component').then(m => m.FaqsComponent) },
+  { path: 'testimonials', loadComponent: () => import('./pages/testimonials.component').then(m => m.TestimonialsComponent) },
+  { path: 'legal', loadComponent: () => import('./pages/legal.component').then(m => m.LegalComponent) },
+  { path: 'locations', loadComponent: () => import('./pages/locations.component').then(m => m.LocationsComponent) },
+  { path: 'blog', loadComponent: () => import('./pages/blog.component').then(m => m.BlogComponent) },
+  { path: 'blog/:slug', loadComponent: () => import('./pages/post.component').then(m => m.PostComponent) }
 ];
