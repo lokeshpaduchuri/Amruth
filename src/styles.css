@@ -2,4 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body { @apply bg-cream text-deepmaroon; }
+/* Base + Dark Mode */
+body { @apply bg-cream text-deepmaroon dark:bg-neutral-900 dark:text-cream; }
+
+/* Optional: improve form controls color-scheme */
+:root { color-scheme: light; }
+.dark { color-scheme: dark; }

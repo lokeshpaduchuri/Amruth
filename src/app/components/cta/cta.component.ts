@@ -5,11 +5,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   selector: 'app-cta',
   imports: [RouterLink],
-  template: `
-    <div class="text-center py-8">
-      <a [routerLink]="link" class="px-6 py-3 bg-teal text-cream rounded shadow">{{label}}</a>
-    </div>
-  `,
+  templateUrl: './cta.component.html',
 })
 export class CTAComponent {
   @Input() link = '';
